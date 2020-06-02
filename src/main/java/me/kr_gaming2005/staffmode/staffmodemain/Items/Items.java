@@ -35,13 +35,13 @@ public class Items {
         RandomTP.setItemMeta(rtpm);
         p.getInventory().setItem(3, RandomTP);
 
-        //OnlineStaff
-        ItemStack OnlineStaff = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta OSM = (SkullMeta) OnlineStaff.getItemMeta();
+        //HiddenStaff
+        ItemStack HiddenStaff = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta OSM = (SkullMeta) HiddenStaff.getItemMeta();
         OSM.setOwningPlayer(p);
-        OSM.setDisplayName(ChatUtill.format("&e&lOnline Staff"));
-        OnlineStaff.setItemMeta(OSM);
-        p.getInventory().setItem(4, OnlineStaff);
+        OSM.setDisplayName(ChatUtill.format("&e&lHiddenStaff"));
+        HiddenStaff.setItemMeta(OSM);
+        p.getInventory().setItem(4, HiddenStaff);
 
         //Banhammer
         ItemStack BanHammer = new ItemStack(Material.DIAMOND_AXE);

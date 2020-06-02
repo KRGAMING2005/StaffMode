@@ -1,6 +1,7 @@
 package me.kr_gaming2005.staffmode.staffmodemain;
 
 import me.kr_gaming2005.staffmode.staffmodemain.CustomFiles.MessagesFile;
+import me.kr_gaming2005.staffmode.staffmodemain.Events.InventoryClick;
 import me.kr_gaming2005.staffmode.staffmodemain.Events.ItemClick;
 import me.kr_gaming2005.staffmode.staffmodemain.Events.LeaveEvent;
 import me.kr_gaming2005.staffmode.staffmodemain.commands.StaffModeCommand;
@@ -19,6 +20,8 @@ public final class StaffModeMain extends JavaPlugin {
     public void onEnable() {
         //Config
         this.getConfig().options().copyDefaults(true);
+        this.getConfig().createSection("InStaffMode");
+
         this.saveDefaultConfig();
 
         //Messages
@@ -38,6 +41,7 @@ public final class StaffModeMain extends JavaPlugin {
         //Listeners
         Bukkit.getServer().getPluginManager().registerEvents(new LeaveEvent(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new ItemClick(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new InventoryClick(), this);
     }
 
     @Override

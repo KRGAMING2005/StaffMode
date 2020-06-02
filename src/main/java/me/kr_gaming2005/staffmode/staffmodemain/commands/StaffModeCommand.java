@@ -25,11 +25,11 @@ public class StaffModeCommand implements CommandExecutor {
 
     private static StaffModeMain plugin = StaffModeMain.getPlugin(StaffModeMain.class);
 
-    public static ArrayList<String> Staffmode = new ArrayList<>();
+    public static ArrayList<Player> Staffmode = new ArrayList<>();
 
     public static void EnterStaffMode(Player p){
         p.sendMessage(ChatUtill.format(MessagesFile.get().getString("prefix") + "&2&lEnabled!"));
-        Staffmode.add(p.getUniqueId().toString());
+        Staffmode.add(p);
         VanishAPI.hidePlayer(p);
         SaveInv.Save(p);
         locations.put(p.getUniqueId().toString(), p.getLocation());
@@ -40,7 +40,7 @@ public class StaffModeCommand implements CommandExecutor {
 
     }
     public static void ExitStaffMode(Player p){
-        Staffmode.remove(p.getUniqueId().toString());
+        Staffmode.remove(p);
         VanishAPI.showPlayer(p);
         p.sendMessage(ChatUtill.format(MessagesFile.get().getString("prefix") + "&c&lDisabled!"));
         LoadInv.load(p);
@@ -55,7 +55,7 @@ public class StaffModeCommand implements CommandExecutor {
             if(command.getName().equalsIgnoreCase("staffmode")){
                 if(sender.hasPermission("staffmode.use")) {
 
-                    if(!(Staffmode.contains(p.getUniqueId().toString()))){
+                    if(!(Staffmode.contains(p))){
                         EnterStaffMode(p);
                 }else{
                         ExitStaffMode(p);

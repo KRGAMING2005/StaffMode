@@ -24,6 +24,7 @@ public class LoadInv {
 
             p.getInventory().setContents(contents);
             file.delete();
+
         }
 
 
