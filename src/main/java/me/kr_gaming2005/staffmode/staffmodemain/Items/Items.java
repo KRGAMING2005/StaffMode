@@ -55,7 +55,7 @@ public class Items {
         //VanishToggle
         ItemStack VanishToggle = new ItemStack(Material.LIME_DYE);
         ItemMeta VTM = VanishToggle.getItemMeta();
-        VTM.setDisplayName(ChatUtill.format("&aVanish Toggle"));
+        VTM.setDisplayName(ChatUtill.format("&a&lVanish Toggle"));
         ArrayList<String> VTL = new ArrayList<>();
         VTL.add(ChatUtill.format("&aToggle Vanish!"));
         VanishToggle.setItemMeta(VTM);

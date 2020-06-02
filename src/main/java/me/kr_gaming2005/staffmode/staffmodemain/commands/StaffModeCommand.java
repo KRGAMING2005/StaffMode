@@ -2,7 +2,10 @@ package me.kr_gaming2005.staffmode.staffmodemain.commands;
 
 import me.kr_gaming2005.staffmode.staffmodemain.ChatUtill;
 import me.kr_gaming2005.staffmode.staffmodemain.CustomFiles.MessagesFile;
+import me.kr_gaming2005.staffmode.staffmodemain.Data.LoadInv;
+import me.kr_gaming2005.staffmode.staffmodemain.Data.SaveInv;
 import me.kr_gaming2005.staffmode.staffmodemain.Items.Items;
+import me.kr_gaming2005.staffmode.staffmodemain.StaffModeMain;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,9 +19,11 @@ import java.util.HashMap;
 
 public class StaffModeCommand implements CommandExecutor {
 
-    private static HashMap<String, ItemStack[]> armourContents = new HashMap<String, ItemStack[]>();
-    private static HashMap<String, ItemStack[]> inventoryContents = new HashMap<String, ItemStack[]>();
-    private static HashMap<String, Location> locations = new HashMap<String, Location>();
+    public static HashMap<String, ItemStack[]> armourContents = new HashMap<String, ItemStack[]>();
+    public static HashMap<String, ItemStack[]> inventoryContents = new HashMap<String, ItemStack[]>();
+    public static HashMap<String, Location> locations = new HashMap<String, Location>();
+
+    private static StaffModeMain plugin = StaffModeMain.getPlugin(StaffModeMain.class);
 
     public static ArrayList<String> Staffmode = new ArrayList<>();
 
@@ -26,15 +31,11 @@ public class StaffModeCommand implements CommandExecutor {
         p.sendMessage(ChatUtill.format(MessagesFile.get().getString("prefix") + "&2&lEnabled!"));
         Staffmode.add(p.getUniqueId().toString());
         VanishAPI.hidePlayer(p);
-
-        armourContents.put(p.getUniqueId().toString(), p.getInventory().getArmorContents());
-        inventoryContents.put(p.getUniqueId().toString(), p.getInventory().getContents());
+        SaveInv.Save(p);
         locations.put(p.getUniqueId().toString(), p.getLocation());
 
         p.getInventory().clear();
-
         Items.giveItems(p);
-
 
 
     }
@@ -42,11 +43,9 @@ public class StaffModeCommand implements CommandExecutor {
         Staffmode.remove(p.getUniqueId().toString());
         VanishAPI.showPlayer(p);
         p.sendMessage(ChatUtill.format(MessagesFile.get().getString("prefix") + "&c&lDisabled!"));
-
+        LoadInv.load(p);
         p.teleport(locations.get(p.getUniqueId().toString()));
-        p.getInventory().setContents(inventoryContents.get(p.getUniqueId().toString()));
-        p.getInventory().setArmorContents(armourContents.get(p.getUniqueId().toString()));
-    }
+       }
 
 
     @Override
@@ -61,9 +60,7 @@ public class StaffModeCommand implements CommandExecutor {
                 }else{
                         ExitStaffMode(p);
                     }
-
                 }
-
                 }
             }
         return false;

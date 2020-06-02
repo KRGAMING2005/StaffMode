@@ -7,19 +7,25 @@ import me.kr_gaming2005.staffmode.staffmodemain.commands.StaffModeCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.Connection;
+
 public final class StaffModeMain extends JavaPlugin {
+
+    public static Connection connection;
+    public static String host, database, username, password;
+    public static int port;
 
     @Override
     public void onEnable() {
         //Config
         this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
-        this.saveConfig();
 
         //Messages
         MessagesFile.setup();
         MessagesFile.get().addDefault("prefix", "&3&lStaffMode ");
         MessagesFile.get().options().copyDefaults(true);
+
 
 
         //Message

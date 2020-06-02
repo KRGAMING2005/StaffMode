@@ -10,11 +10,6 @@ public class LeaveEvent implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent e){
         Player p = e.getPlayer();
-        if(StaffModeCommand.Staffmode.contains(p.getUniqueId().toString())){
-           p.performCommand("staffmode");
-
-        }
-
     }
 
 

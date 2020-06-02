@@ -16,3 +16,6 @@ permissions:
     default: op
     children:
       staffmode.use: true
+      staffmode.admin: true
+  staffmode.admin:
+    default: op

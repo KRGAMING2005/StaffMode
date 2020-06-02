@@ -1,1 +1,7 @@
 SavePlayerNameOnJoin: true
+
+host: "localhost"
+database: "database"
+username: "usrename"
+password: "password"
+port: "3306"
